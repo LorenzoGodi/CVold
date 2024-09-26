@@ -1,0 +1,351 @@
+\documentclass[10pt, a4paper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1 cm, % seperation between body and page edge from the top
+    bottom=1 cm, % seperation between body and page edge from the bottom
+    left=1 cm, % seperation between body and page edge from the left
+    right=1 cm, % seperation between body and page edge from the right
+    footskip=0.5 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Lorenzo Godi test2's CV},
+    pdfauthor={Lorenzo Godi test2},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.4 cm
+}{
+    % bottom space:
+    0.4 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 6.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-1 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-0.5 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Updated: September 2024}\hspace{\widthof{Updated: September 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{30 pt}{30 pt}\selectfont Lorenzo Godi test2}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Padova, Italy}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:lorenzo.godi.work@protonmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}lorenzo.godi.work@protonmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://linkedin.com/in/lorenzogodi}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}lorenzogodi}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://github.com/LorenzoGodi}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}LorenzoGodi}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.4 cm}
+
+
+    \section{About Me}
+
+
+
+        
+        \begin{onecolentry}
+            I am a computer scientist and an astronomy student. My pursuit in life has always been knowledge. I was just six years old when I was captivated in front of the screen by a documentary about black holes. I appreciate and need to constantly deepen my understanding of the world. Computer sciences have always been my strong suit since high school. I enjoy designing software and programming. You will find in me an highly motivated person, willing to learn and face challenges and capable of working independently. I also enjoy collaborating in a team environment and exchanging ideas. I would love to dedicate myself to a stimulating project, growing my abilities and passion.
+        \end{onecolentry}
+
+
+    
+    \section{Education}
+
+
+
+        
+        \begin{twocolentry}{
+            
+            
+        \textit{2021 – present}}
+            \textbf{University of Padova}
+
+            \textit{Bachelor's Degree in Astronomy (attending)}
+        \end{twocolentry}
+
+
+
+        \vspace{0.4 cm}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{2025 – present}}
+            \textbf{Ca'Foscari University of Venice}
+
+            \textit{Execuive Master (lv 1) in Quantum Machine Learning (attending)}
+        \end{twocolentry}
+
+
+
+        \vspace{0.4 cm}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{2018 – 2021}}
+            \textbf{University of Trento}
+
+            \textit{Bachelor's Degree in Computer Sciences}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Final grade:} 110 cum laude / 110
+                \item \textbf{Internship and final exam:} “Data Analysis in the climate domain on HPC clusters using the parallel data analytics framework Dask”
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.4 cm}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{2013 – 2018}}
+            \textbf{Technical School ITT “Eugenio Barsanti”}
+
+            \textit{Diploma in Informatics and Telecommunications - Specialisation: Informatics}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item \textbf{Final grade:} 100 / 100
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Experience}
+
+
+
+        
+        \begin{twocolentry}{
+        \textit{Venezia, Italy}    
+            
+        \textit{Nov 2023 – present}}
+            \textbf{Apprenticeship - IT and Telematics Systems Officer}
+            
+            \textit{Accenture Italia}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Windows System Administrator at Public Administration Offices.
+                \item PowerShell and Python scripting.
+                \item Deployment of applications on Windows Server.
+                \item Managed Windows Server services, including Active Directory, DFS, WSUS, and DNS.
+                \item Configuring monitoring services such as Dynatrace, Zabbix
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.4 cm}
+
+        \begin{twocolentry}{
+        \textit{Trento, Italy}    
+            
+        \textit{May 2020 – May 2021}}
+            \textbf{Online Technical Support Operator}
+            
+            \textit{University of Trento}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Provided support to academic departments for conducting virtual graduation sessions.
+                \item Managed and organised Zoom meetings, offering technical assistance.
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Volunteering}
+
+
+
+        
+        \begin{twocolentry}{
+        \textit{Technical School ITT “Eugenio Barsanti”}    
+            
+        }
+            \textbf{IT Tutor for adults}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Conducted basic IT courses for adults on using computers, smartphones, and the internet.
+                \item Developed instructional guides and prepared lesson materials.
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+    
+    \section{Technologies}
+
+
+
+        
+        \begin{onecolentry}
+            \textbf{Languages:} Python (Numpy, Xarray, Matplotlib), SQL, PowerShell, C\#, JAVA, SML, F\#
+        \end{onecolentry}
+
+        \vspace{0.4 cm}
+
+        \begin{onecolentry}
+            \textbf{Tools:} Jupyter Lab, Git, LateX
+        \end{onecolentry}
+
+        \vspace{0.4 cm}
+
+        \begin{onecolentry}
+            \textbf{Familiar with:} .NET, Docker, C++, JavaScript, Typescript, Bash
+        \end{onecolentry}
+
+
+    
+
+\end{document}
