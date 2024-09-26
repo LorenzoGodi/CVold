@@ -1,4 +1,4 @@
-# Lorenzo Godi test2's CV
+# Lorenzo Godi's CV
 
 - Email: [lorenzo.godi.work@protonmail.com](mailto:lorenzo.godi.work@protonmail.com)
 - Location: Padova, Italy
