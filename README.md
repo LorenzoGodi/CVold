@@ -16,10 +16,6 @@ I am a computer scientist and an astronomy student. My pursuit in life has alway
 
 - 2021 – present
 
-## Ca'Foscari University of Venice, Execuive Master (lv 1) in Quantum Machine Learning (attending)
-
-- 2025 – present
-
 ## University of Trento, Bachelor's Degree in Computer Sciences
 
 - 2018 – 2021
